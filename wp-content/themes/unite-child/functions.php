@@ -136,3 +136,31 @@ function create_films_taxonomies() {
 
     register_taxonomy( 'actor', 'films', $args );
 }
+function register_shortcodes() {
+    add_shortcode( 'display-films', 'display_custom_post_type' );
+}
+
+function display_custom_post_type(){
+    $args = array(
+        'post_type' => 'films',
+        'post_status' => 'publish',
+		'order' => 'DESC',
+		'posts_per_page' => 5,
+    );
+
+    $string = '';
+    $query = new WP_Query( $args );
+    if( $query->have_posts() ){
+        $string .= '<ul>';
+        while( $query->have_posts() ){
+            $query->the_post();
+            $string .= '<li style="display: block"><a href="'. get_permalink(). '">' . get_the_title() . '</a><p>'. wp_trim_words( get_the_content(), 10, '...' ).'</p> </li>';
+        }
+        $string .= '</ul>';
+    }
+    wp_reset_postdata();
+    return $string;
+}
+
+
+add_action( 'init', 'register_shortcodes' );

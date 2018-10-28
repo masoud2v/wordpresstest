@@ -1,15 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: masoud
- * Date: 10/28/2018
- * Time: 09:28 AM
- */
-/* Template Name: FilmCustomPage
-Template Post Type: films
-*/
-
-get_header(); ?>
+<?php /* Template Name: FilmCustomPage */ ?>
+<?php get_header(); ?>
 
     <div id="primary" class="content-area col-sm-12 col-md-8 <?php echo of_get_option( 'site_layout' ); ?>">
         <main id="main" class="site-main" role="main">
